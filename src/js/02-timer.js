@@ -33,31 +33,34 @@ const options = {
     else {
     refs.start.disabled = false;
     // refs.start.addEventListener('click', setInterval(convertMs(deltaDate), 1000));
-      refs.start.addEventListener('click', (setInterval(() => {
-        const currentDate = Date.now();
-        const selectedDate = Math.round(new Date(selectedDates[0]).getTime());
-        let deltaDate = selectedDate - currentDate; 
+      refs.start.addEventListener('click', () => {
+        setInterval(function () {
+          const currentDate = Date.now();
+          const selectedDate = Math.round(new Date(selectedDates[0]).getTime());
+          let deltaDate = selectedDate - currentDate;
 
-       const second = 1000;
-       const minute = second * 60;
-       const hour = minute * 60;
-       const day = hour * 24;
+          const second = 1000;
+          const minute = second * 60;
+          const hour = minute * 60;
+          const day = hour * 24;
 
-       // Remaining days
-       const days = Math.floor(deltaDate / day);
-       // Remaining hours
-       const hours = Math.floor((deltaDate % day) / hour);
-       // Remaining minutes
-       const minutes = Math.floor(((deltaDate % day) % hour) / minute);
-       // Remaining seconds
-       const seconds = Math.floor((((deltaDate % day) % hour) % minute) / second);
-      //  console.log({ days, hours, minutes, seconds });
-       refs.days.textContent = days;
-       refs.hours.textContent = hours;
-       refs.minutes.textContent = minutes;
-       refs.seconds.textContent = seconds;
-       return { days, hours, minutes, seconds };
-    }, 1000)));
+          // Remaining days
+          const days = Math.floor(deltaDate / day);
+          // Remaining hours
+          const hours = Math.floor((deltaDate % day) / hour);
+          // Remaining minutes
+          const minutes = Math.floor(((deltaDate % day) % hour) / minute);
+          // Remaining seconds
+          const seconds = Math.floor((((deltaDate % day) % hour) % minute) / second);
+          //  console.log({ days, hours, minutes, seconds });
+          refs.days.textContent = days;
+          refs.hours.textContent = hours;
+          refs.minutes.textContent = minutes;
+          refs.seconds.textContent = seconds;
+          return { days, hours, minutes, seconds };
+        }, 1000)
+      }
+      );
     }
   },
 };
