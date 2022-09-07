@@ -39,15 +39,15 @@ const options = {
 refs.start.addEventListener('click', () => {
   refs.start.disabled = true;
   refs.datetimePicker.disabled = true;
-  setInterval(() => {
+  const setFunc = setInterval(() => {
     const currentDate = Date.now();
     const selectedDate = Math.round(new Date(SELECTED_DATE).getTime());
     let deltaDate = selectedDate - currentDate;
     convertMs(deltaDate); 
-    // console.log(deltaDate);
-    //  if (deltaDate <= 1000) {
-    //    clearInterval(setFunc);
-    //  } 
+    console.log(deltaDate);
+     if (deltaDate <= 1000) {
+       clearInterval(setFunc);
+     } 
    }, 1000);
  
 });
