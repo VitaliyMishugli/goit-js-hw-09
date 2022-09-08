@@ -16,20 +16,21 @@ refs.formEl.addEventListener('submit', (e) => {
     // console.log(Number(delay.value), Number(step.value), Number(amount.value));
   
   for (let i = 0; i < amount; i = i + 1){
-    console.log(i);
+    // console.log(i);
+    delay = delay + step;
     createPromise(i, delay)
-      .then(({ i, delay }) => {
+      .then(({ position, delay }) => {
         setTimeout(() => {
-          Notiflix.Notify.success(`✅ Fulfilled promise ${i} in ${delay}ms`);
+          Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
         }, delay)
       })
-      .catch(({ i, delay }) => {
+      .catch(({ position, delay }) => {
         setTimeout(() => {
-          Notiflix.Notify.failure(`❌ Rejected promise ${i} in ${delay}ms`);
+          Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
         }, delay)        
       });
   }
-   delay = delay + step;
+   
 })
 
 function createPromise(position, delay) {
